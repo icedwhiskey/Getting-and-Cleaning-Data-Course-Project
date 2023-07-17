@@ -8,7 +8,7 @@
 #   for further analysis. Raw data represents Human Activity Recognition 
 #   database, that was collected by Reyes-Ortiz et al. (2012) using smartphone
 #   (Samsung Galaxy S II) accelerometer and gyroscope sensors.
-#   For further details, please, refer to README.md
+#   For further details, please, refer to README.md and Codebook.md
 
 library(archive)
 library(dplyr)
@@ -23,7 +23,7 @@ fileurl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%2
 # Check if file exists in directory, otherwise download and unzip it with 
 # archive package 
 if (!file.exists("UCI HAR Dataset")) { 
-  archive_extract(fileurl, dir = "./") 
+        archive_extract(fileurl, dir = "./") 
 }
 
 ##############################################################################
@@ -32,8 +32,8 @@ if (!file.exists("UCI HAR Dataset")) {
 
 # Select only required files to read
 lstfls <- list.files(path = "./", 
-          pattern = "^[Xx]|^[Yy]|^[Ss]ubject|^[Aa]ctivity|features.txt",
-          recursive = TRUE)
+                     pattern = "^[Xx]|^[Yy]|^[Ss]ubject|^[Aa]ctivity|features.txt",
+                     recursive = TRUE)
 
 # Read files into list applying lapply
 names(lstfls) <- paste0("UCI HAR Dataset/", names(lstfls))
@@ -64,7 +64,7 @@ names(subject) <- "subject"
 names(x) <- features$functions
 names(y) <- "code"
 
-# Merge the training and the test sets to create one data set
+# Merge subject y and x sets to create one data set
 data_merged <- cbind(subject,y,x)
 
 # Remove unnecessary data frames to save memory
